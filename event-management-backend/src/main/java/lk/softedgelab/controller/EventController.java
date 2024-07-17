@@ -38,7 +38,7 @@ public class EventController {
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found for this id :: " + id));
         event.setName(eventDetails.getName());
         event.setDescription(eventDetails.getDescription());
-//        event.setDate(eventDetails.getDate());
+        event.setDate(eventDetails.getDate());
         event.setLocation(eventDetails.getLocation());
         final Event updatedEvent = eventRepository.save(event);
         return ResponseEntity.ok(updatedEvent);

@@ -25,6 +25,6 @@ public class Event {
     private Integer id;
     private String name;
     private String description;
-//    private Date date;
+    private Date date;
     private String location;
 }
