@@ -20,6 +20,7 @@ public class Attendee {
     private Integer id;
     private String name;
     private String email;
+    private String contact;
 
     @ManyToOne
     @JoinColumn(name = "event_id")

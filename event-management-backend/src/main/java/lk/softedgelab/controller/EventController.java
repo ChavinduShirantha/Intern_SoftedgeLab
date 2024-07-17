@@ -6,6 +6,7 @@ import lk.softedgelab.repo.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/events")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EventController {
     @Autowired
     private EventRepo eventRepository;
@@ -25,6 +27,13 @@ public class EventController {
     @GetMapping
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable Integer id) {
+        Event event = eventRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Event not found for this id :: " + id));
+        return ResponseEntity.ok().body(event);
     }
 
     @PostMapping
